@@ -10,7 +10,7 @@ import Chart from "chart.js";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  name: "ChartDisplay",
+  name: "ChartLine",
 });
 </script>
 
