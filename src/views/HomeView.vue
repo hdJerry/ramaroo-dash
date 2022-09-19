@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <Dashboard>
+    <template #sidebar>
+      <SideBar />
+    </template>
+    <template #content>
+      <DashBoardHeading />
+      <div v-if="!store.getters.isLoading">
+        <StatsDisplay />
+      </div>
+    </template>
+  </Dashboard>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
 });
+</script>
+
+<script lang="ts" setup>
+import Dashboard from "@/components/Dashboard";
+import SideBar from "@/components/SideBar";
+import DashBoardHeading from "@/components/DashBoardHeading";
+import StatsDisplay from "@/components/StatsDisplay";
+const store = useStore();
+
+store.dispatch("fetchData");
 </script>
